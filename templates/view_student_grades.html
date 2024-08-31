@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Grades</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/view_student_grades.css') }}">
+    </style>
+</head>
+<body>
+    <h1>Your Grades</h1>
+        <div class="container">
+            
+            <div class="grades">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Grade</th>
+                            <!-- Add more columns as needed -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for grade in student_grades %}
+                        <tr>
+                            <td>{{ course.course_name }}</td>
+                            <td>{{ grade.course_code }}</td>
+                            <td>{{ grade.grade }}</td>
+                            <!-- Add more columns as needed -->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    <div class="links">
+        {% if current_user.is_authenticated %}
+        <a href="{{ url_for('dashboard.student_dashboard') }}">Back</a> 
+        {% else %}
+        <p>Go to <a href="{{ url_for('auth.login') }}">Login</a> page.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
